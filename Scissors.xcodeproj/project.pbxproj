@@ -61,8 +61,9 @@
 		7632D5472BBF233A00CA9DFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7632D5492BBF233A00CA9DFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7632D5512BBF236E00CA9DFD /* ssoe-ios.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ssoe-ios.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7632D5592BBF236E00CA9DFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7632D56F2BBF972800CA9DFD /* Scissors-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Scissors-ios.entitlements"; sourceTree = "<group>"; };
+                7632D5592BBF236E00CA9DFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+                AB947DE9AAB2744C0D4B414B /* ssoe-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ssoe-ios.entitlements"; sourceTree = "<group>"; };
+                7632D56F2BBF972800CA9DFD /* Scissors-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Scissors-ios.entitlements"; sourceTree = "<group>"; };
 		7632D5732BBF9CF100CA9DFD /* Cookies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookies.swift; sourceTree = "<group>"; };
 		767C483A2BBFA53D00AFA32F /* AuthenticationViewController+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationViewController+Shared.swift"; sourceTree = "<group>"; };
 		768FA4D02BB7294D001DD2FB /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -72,6 +73,7 @@
                 4C4B734FE3FF7962C6E6436B /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
                 61E96AA9CB240C4380895E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
                 14C7DE87D10CE0C443CD3928 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthenticationViewController.xib; sourceTree = "<group>"; };
+                45930309ADA03946BAABA00B /* ssoe-macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ssoe-macos.entitlements"; sourceTree = "<group>"; };
                 E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ssoe-macos.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,9 +123,10 @@
                         isa = PBXGroup;
                         children = (
                                 76E195282BD0BD49002442A5 /* AuthenticationViewController.xib */,
-                                76E195232BD0BAD0002442A5 /* AuthenticationViewController.swift */,
-                                7632D5592BBF236E00CA9DFD /* Info.plist */,
-                        );
+                               76E195232BD0BAD0002442A5 /* AuthenticationViewController.swift */,
+                               7632D5592BBF236E00CA9DFD /* Info.plist */,
+                               AB947DE9AAB2744C0D4B414B /* ssoe-ios.entitlements */,
+                       );
                         path = "ssoe-ios";
                         sourceTree = "<group>";
                 };
@@ -131,9 +134,10 @@
                         isa = PBXGroup;
                         children = (
                                 D38C1CC0B3138F3DAA64EAED /* AuthenticationViewController.xib */,
-                                4C4B734FE3FF7962C6E6436B /* AuthenticationViewController.swift */,
-                                61E96AA9CB240C4380895E57 /* Info.plist */,
-                        );
+                               4C4B734FE3FF7962C6E6436B /* AuthenticationViewController.swift */,
+                               61E96AA9CB240C4380895E57 /* Info.plist */,
+                               45930309ADA03946BAABA00B /* ssoe-macos.entitlements */,
+                       );
                         path = "ssoe-macos";
                         sourceTree = "<group>";
                 };
@@ -396,8 +400,9 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
-				LD_RUNPATH_SEARCH_PATHS = (
+                               IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+                               CODE_SIGN_ENTITLEMENTS = "ssoe-ios/ssoe-ios.entitlements";
+                               LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
@@ -428,8 +433,9 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
-				LD_RUNPATH_SEARCH_PATHS = (
+                               IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+                               CODE_SIGN_ENTITLEMENTS = "ssoe-ios/ssoe-ios.entitlements";
+                               LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
@@ -512,8 +518,9 @@
                                 INFOPLIST_FILE = "ssoe-macos/Info.plist";
                                 INFOPLIST_KEY_CFBundleDisplayName = "Argio SSO";
                                 INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                                MACOSX_DEPLOYMENT_TARGET = 14.4;
-                                LD_RUNPATH_SEARCH_PATHS = (
+                               MACOSX_DEPLOYMENT_TARGET = 14.4;
+                               CODE_SIGN_ENTITLEMENTS = "ssoe-macos/ssoe-macos.entitlements";
+                               LD_RUNPATH_SEARCH_PATHS = (
                                         "$(inherited)",
                                         "@executable_path/../Frameworks",
                                         "@executable_path/../../Frameworks",
@@ -540,8 +547,9 @@
                                 INFOPLIST_FILE = "ssoe-macos/Info.plist";
                                 INFOPLIST_KEY_CFBundleDisplayName = "Argio SSO";
                                 INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                                MACOSX_DEPLOYMENT_TARGET = 14.4;
-                                LD_RUNPATH_SEARCH_PATHS = (
+                               MACOSX_DEPLOYMENT_TARGET = 14.4;
+                               CODE_SIGN_ENTITLEMENTS = "ssoe-macos/ssoe-macos.entitlements";
+                               LD_RUNPATH_SEARCH_PATHS = (
                                         "$(inherited)",
                                         "@executable_path/../Frameworks",
                                         "@executable_path/../../Frameworks",
