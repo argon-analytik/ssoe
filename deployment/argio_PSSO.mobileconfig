@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>AuthenticationMethod</key>
+            <string>Password</string>
+            <key>ExtensionIdentifier</key>
+            <string>ch.argio.sso.extension</string>
+            <key>PayloadDisplayName</key>
+            <string>Argio Platform SSO</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.extensiblesso.3fd223d6-c013-4998-8db8-e12e6438c6bf</string>
+            <key>PayloadType</key>
+            <string>com.apple.extensiblesso</string>
+            <key>PayloadUUID</key>
+            <string>a6fbe08f-04d9-44a3-9aed-1630d9765d6b</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>TeamIdentifier</key>
+            <string>QUR8QTGXNB</string>
+            <key>Type</key>
+            <string>Redirect</string>
+            <key>URLs</key>
+            <array>
+                <string>https://auth.argio.ch/</string>
+            </array>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Argio Platform SSO Profile</string>
+    <key>PayloadIdentifier</key>
+    <string>ch.argio.psso.profile</string>
+    <key>PayloadScope</key>
+    <string>System</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>12d38773-70e8-4957-a8ec-34479f630ab0</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
