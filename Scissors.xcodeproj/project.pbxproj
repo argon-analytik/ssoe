@@ -446,8 +446,9 @@
 		};
 		7632D55E2BBF236E00CA9DFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+                       buildSettings = {
+                               ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                               CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QUR8QTGXNB;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -473,8 +474,9 @@
 		};
                 7632D55F2BBF236E00CA9DFD /* Release */ = {
                         isa = XCBuildConfiguration;
-                        buildSettings = {
-                                CODE_SIGN_STYLE = Automatic;
+                       buildSettings = {
+                               ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                               CODE_SIGN_STYLE = Automatic;
                                 CURRENT_PROJECT_VERSION = 1;
                                 DEVELOPMENT_TEAM = QUR8QTGXNB;
                                 GENERATE_INFOPLIST_FILE = YES;
@@ -501,8 +503,9 @@
                 };
                 A0D123313BDEB9B6592B1B9E /* Debug */ = {
                         isa = XCBuildConfiguration;
-                        buildSettings = {
-                                CODE_SIGN_STYLE = Automatic;
+                       buildSettings = {
+                               ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                               CODE_SIGN_STYLE = Automatic;
                                 CURRENT_PROJECT_VERSION = 1;
                                 DEVELOPMENT_TEAM = QUR8QTGXNB;
                                 GENERATE_INFOPLIST_FILE = YES;
@@ -528,8 +531,9 @@
                 };
                 5177E3FE8DFC0FF72721FED7 /* Release */ = {
                         isa = XCBuildConfiguration;
-                        buildSettings = {
-                                CODE_SIGN_STYLE = Automatic;
+                       buildSettings = {
+                               ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                               CODE_SIGN_STYLE = Automatic;
                                 CURRENT_PROJECT_VERSION = 1;
                                 DEVELOPMENT_TEAM = QUR8QTGXNB;
                                 GENERATE_INFOPLIST_FILE = YES;
