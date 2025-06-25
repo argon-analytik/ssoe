@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
     <key>com.apple.developer.authentication-services</key>
-    <true/>
+    <string>Extension</string>
 </dict>
 </plist>
