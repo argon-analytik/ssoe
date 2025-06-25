@@ -516,7 +516,7 @@
                                         "@executable_path/../../Frameworks",
                                 );
                                 MARKETING_VERSION = 1.0;
-                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension";
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension-macos";
                                 PRODUCT_NAME = "$(TARGET_NAME)";
                                 SDKROOT = macosx;
                                 SKIP_INSTALL = YES;
@@ -543,7 +543,7 @@
                                         "@executable_path/../../Frameworks",
                                 );
                                 MARKETING_VERSION = 1.0;
-                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension";
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension-macos";
                                 PRODUCT_NAME = "$(TARGET_NAME)";
                                 SDKROOT = macosx;
                                 SKIP_INSTALL = YES;
