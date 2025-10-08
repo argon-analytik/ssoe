@@ -1,132 +1,286 @@
-# Argio SSOE (Extensible / Platform Single Sign‑On Extension)
+# Argon Platform SSO (Apple Extensible/Platform SSO)
 
-> **Repo rename planned:**  
-> `argon-analytik/sso` → **`argon-analytik/ssoe`**  
-> (SSOE = “Single Sign‑On Extension”, besser such‑ & sprechbar).
+Universal (macOS + iOS) Authentication Services extension that implements Apple’s
+Extensible SSO / Platform SSO for the Argon platform (OIDC). The repository
+contains a macOS host app, iOS and macOS SSO extensions, and shared code for a
+Redirect‑based OIDC flow with PKCE, Keychain token storage, and MDM‑driven config.
 
-A universal (macOS + iOS) Authentication‑Extensions target that connects Apple’s
-**Extensible SSO** / **Platform SSO** frameworks with your **Authentik** IdP.  
-Zusammen mit dem [`psso-server-go`](https://github.com/argon-analytik/psso-server-go)
-holt sich macOS beim Boot **Benutzername, Passwort, Gruppen & Secure‑Enclave‑Key**
-direkt aus der Cloud.
+This README explains the full layout, configuration, build/sign/notarize process,
+generated artifacts (.pkg and .mobileconfig), and deployment with Mosyle.
 
 ---
 
-## 1 · Highlights
+## Overview
 
-* **macOS Login‑Fenster‑Integration** (Platform SSO)  
-  – Cloud‑Passwort anstelle lokaler Accounts  
-* **Safari / App SSO** auf iOS & macOS (Extensible SSO – Credential Type)  
-* **Just‑in‑Time‑Account‑Creation** + Gruppen‑Mapping (“argon_admins”)  
-* **Touch ID / Face ID Unlock** ab erstem Login  
-* Kein AzureAD / Google‑Workspace‑Abo nötig → Authentik + Docker Stack genügt
+- Implements an Authentication Services extension (idp‑extension) that:
+  - Detects requests to `https://auth.argio.ch` and performs OIDC Authorization Code + PKCE
+  - Exchanges code for tokens (`/application/o/token/`) and stores them in Keychain
+  - Adds `Authorization: Bearer <access_token>` headers on success
+  - Refreshes tokens when expired (if `refresh_token` available)
+- A macOS host app container is included for packaging and distribution as a signed, notarized `.pkg`.
+- Two pre‑filled Mosyle `.mobileconfig` profiles complete the setup for Redirect SSO.
 
 ---
 
-## 2 · Projekt‑Struktur
+## Fixed Values and Identifiers
+
+- Team/Org
+  - TEAM_ID: `QUR8QTGXNB`
+  - ORG_REVERSE_DOMAIN: `ch.argio`
+- Bundle IDs
+  - Container (macOS host app): `ch.argio.psso`
+  - Extension (macOS/iOS): `ch.argio.psso.ssoe`
+- Names
+  - APP_NAME: `Argon Platform SSO`
+  - EXT_NAME: `Argon Platform SSO Extension`
+- OIDC Defaults
+  - ISSUER: `https://auth.argio.ch`
+  - AUTHZ: `${ISSUER}/application/o/authorize/`
+  - TOKEN: `${ISSUER}/application/o/token/`
+  - SCOPE: `openid profile email offline_access`
+
+Secrets are read from the environment for notarization:
+
+- APPLE_ID (Apple ID for notarytool)
+- APP_SPECIFIC_PWD (app‑specific password for notarytool)
+
+---
+
+## Repository Structure
 
 ```
-
 .
-├── Scissors.xcodeproj/           # Xcode project (iOS app + 2 extensions)
-│   └── \*.xcscheme                # ssoe-ios / ssoe-macos (shared)
-├── ssoe-ios/                     # iOS extension files
-│   └── Info.plist
-├── ssoe-macos/                   # macOS extension files
-│   └── Info.plist
-├── Shared/                       # Cookie & Helper code for both platforms
+├── Scissors.xcodeproj/              # Xcode project (iOS app, iOS+macOS extensions, macOS host app)
+│   └── xcshareddata/xcschemes/
+│       └── Argon Platform SSO.xcscheme
+├── Scissors-ios/                    # iOS sample container app (for local testing)
+├── ssoe-ios/                        # iOS SSO extension (idp-extension)
+├── ssoe-macos/                      # macOS SSO extension (idp-extension)
+├── psso-macos/                      # macOS host app (no UI)
+├── Shared/                          # Shared code across extensions
+│   ├── AuthenticationViewController+Shared.swift
+│   ├── AuthorizationProvider.swift
+│   ├── Cookies.swift
+│   ├── OIDC.swift                   # PKCE + token exchange/refresh
+│   ├── OIDCConfig.swift             # Reads MDM AdditionalSettings
+│   └── TokenStore.swift             # Keychain storage
 ├── entitlements/
-│   ├── ssoe-ios.entitlements
-│   └── ssoe-macos.entitlements
-└── deployment/
-└── argio\_PSSO.mobileconfig   # ready‑to‑import Mosyle profile
-
-````
-
----
-
-## 3 · Prerequisites
-
-| Tool / Account | Purpose |
-|----------------|---------|
-| **Xcode 15+** | Universal build & notarisation |
-| **Apple Developer Team ID** | `QUR8QTGXNB` |
-| **Authentik IdP** | OIDC Password‑Grant client `psso-server` |
-| **PSSO Server** | Must run & expose `/v1/device/register`, `/token`, JWKS |
-| **Mosyle MDM** | Distributes PKG + mobileconfig |
+│   ├── psso-app.entitlements        # App: Associated Domains (authsrv)
+│   └── psso-ext.entitlements        # Extension: empty (capability applied)
+├── deployment/
+│   ├── apple-app-site-association.json  # AASA template
+│   ├── psso-ARGON.mobileconfig          # Mosyle profile template
+│   └── psso-MORA.mobileconfig           # Mosyle profile template
+├── scripts/
+│   └── build_release.sh             # One‑shot build/sign/notarize/package script
+└── dist/                             # Output artifacts (created by the script)
+```
 
 ---
 
-## 4 · Quick Start (macOS extension)
+## Targets and Bundle IDs
+
+- macOS Host App
+  - Target: `Argon Platform SSO`
+  - Bundle ID: `ch.argio.psso`
+  - Deployment target: macOS 13+
+  - Entitlements: `entitlements/psso-app.entitlements` (Associated Domains)
+- macOS Extension
+  - Target: `ssoe-macos`
+  - Bundle ID: `ch.argio.psso.ssoe`
+  - Deployment target: macOS 13+
+  - NSExtensionPoint: `com.apple.AppSSO.idp-extension`
+- iOS Extension (optional for testing Safari/App SSO)
+  - Target: `ssoe-ios`
+  - Bundle ID: `ch.argio.psso.ssoe`
+  - Deployment target: iOS 17 (as configured)
+- iOS Sample App (optional)
+  - Target: `Scissors-ios`
+
+Signing (Release) is set to Manual for macOS targets with:
+
+- DEVELOPMENT_TEAM = `QUR8QTGXNB`
+- CODE_SIGN_IDENTITY (App/Ext): `Developer ID Application: Yannick Meyer‑Wildhagen (QUR8QTGXNB)`
+
+Installer packaging uses:
+
+- `Developer ID Installer: Yannick Meyer‑Wildhagen (QUR8QTGXNB)`
+
+---
+
+## Entitlements and Capabilities
+
+- App (`entitlements/psso-app.entitlements`)
+  - `com.apple.developer.associated-domains = ["authsrv:auth.argio.ch?mode=developer"]`
+    - Required for Associated Domains / Apple App Site Association (AASA)
+- Extension (`entitlements/psso-ext.entitlements`)
+  - Kept empty; network entitlement managed via Xcode Capabilities for the extension
+
+---
+
+## Extension Info.plist
+
+Both iOS and macOS extensions declare `NSExtension` with:
+
+- `NSExtensionPointIdentifier = com.apple.AppSSO.idp-extension`
+- `NSExtensionPrincipalClass = $(PRODUCT_MODULE_NAME).AuthenticationViewController`
+- Attributes include:
+  - `ASAuthorizationProviderExtensionIssuer = https://auth.argio.ch`
+  - `ASAuthorizationProviderExtensionClientID = ch.argio.sso`
+  - `ASAuthorizationProviderExtensionSupportsPlatformSSO = true`
+
+---
+
+## OIDC Flow and Configuration
+
+The extension reads configuration from the Extensible SSO payload’s
+`AdditionalSettings` dictionary (MDM). Supported keys:
+
+- `issuer` (URL, e.g. `https://auth.argio.ch`)
+- `authorize` (URL, e.g. `${ISSUER}/application/o/authorize/`)
+- `token` (URL, e.g. `${ISSUER}/application/o/token/`)
+- `scopes` (string, default `openid profile email offline_access`)
+- `client_id`
+- `client_secret` (optional)
+- `redirect_uri` (optional; default `ch.argio.psso://oauth/callback`)
+
+Behavior:
+
+- If the request URL matches the issuer host, the extension starts an Authorization Code + PKCE flow to `authorize` and exchanges code for tokens at `token`.
+- Tokens are stored in Keychain (`psso` service). Refresh is attempted when access token is expired.
+- On success, the extension sets `Authorization: Bearer <access_token>` on the response.
+
+Relevant source files: `Shared/OIDCConfig.swift`, `Shared/OIDC.swift`, `Shared/TokenStore.swift`, `Shared/AuthenticationViewController+Shared.swift`.
+
+---
+
+## Apple App Site Association (AASA)
+
+- Template: `deployment/apple-app-site-association.json`
+- Must be hosted at: `https://auth.argio.ch/.well-known/apple-app-site-association`
+- Content‑Type: `application/json`
+- Validation:
+  - `sudo swcutil dl -d auth.argio.ch`
+  - `sudo swcutil show`
+
+---
+
+## Mosyle MDM Profiles (Redirect SSO)
+
+Two templates are provided, identical except for Payload IDs/UUIDs:
+
+- `deployment/psso-ARGON.mobileconfig`
+- `deployment/psso-MORA.mobileconfig`
+
+Common keys:
+
+- `PayloadType = com.apple.extensiblesso`
+- `TeamIdentifier = QUR8QTGXNB`
+- `Type = Redirect`
+- `ExtensionIdentifier = ch.argio.psso.ssoe`
+- `URLs = [ "https://auth.argio.ch/" ]`
+- `AdditionalSettings` dictionary contains:
+  - `issuer`, `authorize`, `token`, `scopes`, `client_id`, `client_secret`, `redirect_uri`
+
+Before uploading, set `client_id` and `client_secret` to your OIDC client values.
+
+---
+
+## Build, Sign, Notarize, Package (macOS)
+
+One‑shot script:
 
 ```bash
-git clone https://github.com/argon-analytik/sso.git
-cd sso
-open Scissors.xcodeproj       # opens Xcode
-````
+export APPLE_ID="yannick@meyer-wildhagen.com"
+export APP_SPECIFIC_PWD="<app-specific-password>"
 
-1. **Scheme → `ssoe-macos`**
-2. *Signing & Capabilities* → Team **QUR8QTGXNB**
-3. **Product ▸ Archive**
-4. Organizer ▸ Distribute ▸ **Developer ID** ▸ Upload ▸ Export PKG
+scripts/build_release.sh
+```
 
-> Output: `ArgioSSO.pkg` – notarisiert & stapler‑‑ready.
+What the script does:
 
----
+- Verifies required tools: `xcodebuild`, `plutil`, `PlistBuddy`, `codesign`, `productbuild`, `stapler`, `xcrun`
+- Stores notary credentials idempotently:
+  - `xcrun notarytool store-credentials AC_NOTARY --apple-id "$APPLE_ID" --team-id "QUR8QTGXNB" --password "$APP_SPECIFIC_PWD"`
+- Archives the `Argon Platform SSO` scheme (Release)
+- Exports the `.app` with Developer ID signing
+- Verifies codesign of the exported `.app`
+- Builds a signed Installer `.pkg` (Developer ID Installer)
+- Submits for notarization and staples the ticket
+- Copies artifacts into `dist/`
 
-## 5 · Deploy with Mosyle
+Manual reference (equivalent commands):
 
-1. **Apps ▸ Add Custom App** → Upload `ArgioSSO.pkg`
-2. **Profiles ▸ Add Profile (type: Custom)** → Upload `deployment/argio_PSSO.mobileconfig`
+```bash
+xcodebuild -project Scissors.xcodeproj -configuration Release -scheme "Argon Platform SSO" clean build
+xcodebuild -project Scissors.xcodeproj -scheme "Argon Platform SSO" -configuration Release -archivePath build/ArgonPlatformSSO.xcarchive archive
 
-   * `ExtensionIdentifier` = `ch.argio.sso.extension-macos`
-   * `TeamIdentifier` = `QUR8QTGXNB`
-3. Assign to test Mac, reboot, log in with Authentik user.
+cat > ExportOptions.plist <<EOF
+{
+  "method": "developer-id",
+  "signingStyle": "manual",
+  "teamID": "QUR8QTGXNB"
+}
+EOF
 
----
+xcodebuild -exportArchive -archivePath build/ArgonPlatformSSO.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/export
 
-## 6 · iOS Extension (optional)
+codesign --verify --deep --strict --verbose=2 "build/export/Argon Platform SSO.app"
 
-* Switch scheme to **`ssoe-ios`**
-* Connect device ➜ *Product ▸ Run* (Debug install)
-* Safari → `https://auth.argio.ch` → SSO prompt appears.
+productbuild --component "build/export/Argon Platform SSO.app" /Applications "build/Argon Platform SSO.pkg" \
+  --sign "Developer ID Installer: Yannick Meyer-Wildhagen (QUR8QTGXNB)"
 
----
-
-## 7 · Configuration Keys (mobileconfig)
-
-| Key                                 | Argio Default           | Description                       |
-| ----------------------------------- | ----------------------- | --------------------------------- |
-| `Issuer`                            | `https://auth.argio.ch` | Must equal `PSSO_ISSUER`          |
-| `Audience`                          | `macos`                 | Mirrors `PSSO_AUDIENCE`           |
-| `ClientID`                          | `ch.argio.sso`          | OIDC client used by the extension |
-| `PlatformSSO › UseSharedDeviceKeys` | `true`                  | Enables Touch ID unlock tokens    |
-| `EnableCreateUserAtLogin`           | `true`                  | JIT local account provisioning    |
-
----
-
-## 8 · Troubleshooting
-
-| Symptom                            | Cause                       | Fix                                                |
-| ---------------------------------- | --------------------------- | -------------------------------------------------- |
-| macOS falls back to local login    | Issuer / JWKS not reachable | `curl https://psso.argio.ch/.well-known/jwks.json` |
-| “invalid\_grant” in PSSO log       | wrong Authentik secret      | Update `.env.psso` + restart container             |
-| Extension demand “App not allowed” | Team ID mismatch            | Check `TeamIdentifier` in profile                  |
+xcrun notarytool submit "build/Argon Platform SSO.pkg" --keychain-profile AC_NOTARY --wait
+xcrun stapler staple "build/Argon Platform SSO.pkg"
+```
 
 ---
 
-## 9 · Roadmap
+## Output Artifacts
 
-* **Passkey‑only Flow** (macOS 15)
-* **SCIM Sync** Authentik → Apple Business Manager
-* **iPadOS shared device** support
+After running the build script, artifacts are placed in `dist/`:
+
+- `dist/Argon Platform SSO.pkg`
+- `dist/psso-ARGON.mobileconfig`
+- `dist/psso-MORA.mobileconfig`
+- `dist/README-DEPLOY.md`
 
 ---
 
-## 10 · License & Contributions
+## Development and Testing
 
-*Swift source is MIT‑licensed (same as upstream Twocanoes sample).*
+- Open `Scissors.xcodeproj` in Xcode.
+- For macOS packaging, use scheme: `Argon Platform SSO`.
+- For iOS Safari/App SSO testing, use scheme: `ssoe-ios` and install on a device.
+- Logging: the extension uses lightweight `print` logging; integrate `os_log` as needed.
 
-Pull‑requests welcome – please run `swiftformat` and ensure the archive build succeeds without warnings before submitting.
+---
 
-Happy single‑sign‑on! 🚀
+## Troubleshooting
+
+- Signing errors
+  - Ensure Developer ID Application/Installer certs are present in the Keychain and match `QUR8QTGXNB`.
+- Notarization failures
+  - Recreate notary credentials: `xcrun notarytool store-credentials AC_NOTARY ...`
+  - Check Apple system status and review notarytool output for details.
+- No SSO trigger
+  - Verify MDM profile is installed and `URLs` includes `https://auth.argio.ch/`.
+  - Confirm AASA is published and valid with `swcutil`.
+- `invalid_grant` or token exchange errors
+  - Check `client_id`, `client_secret`, redirect URI, and allowed scopes in your IdP.
+
+---
+
+## Security Notes
+
+- Tokens are stored in the Keychain (`kSecClassGenericPassword`, service `psso`).
+- PKCE challenge is computed with CryptoKit when available.
+- The extension must be distributed signed + notarized to load on managed devices.
+
+---
+
+## License and Contributions
+
+MIT. Contributions welcome — please keep changes focused and ensure Release
+archive builds are clean before submitting PRs.
+
