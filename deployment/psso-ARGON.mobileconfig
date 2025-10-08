@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.extensiblesso</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>ch.argio.psso.ARGON.sso</string>
+      <key>PayloadUUID</key>
+      <string>6A8A68D4-3C75-4A8C-A6C6-ARGON0000001</string>
+      <key>PayloadDisplayName</key>
+      <string>Argon Platform SSO</string>
+      <key>TeamIdentifier</key>
+      <string>QUR8QTGXNB</string>
+      <key>Type</key>
+      <string>Redirect</string>
+      <key>ExtensionIdentifier</key>
+      <string>ch.argio.psso.ssoe</string>
+      <key>URLs</key>
+      <array>
+        <string>https://auth.argio.ch/</string>
+      </array>
+      <key>AdditionalSettings</key>
+      <dict>
+        <key>issuer</key>
+        <string>https://auth.argio.ch</string>
+        <key>authorize</key>
+        <string>https://auth.argio.ch/application/o/authorize/</string>
+        <key>token</key>
+        <string>https://auth.argio.ch/application/o/token/</string>
+        <key>redirect_uri</key>
+        <string>ch.argio.psso://oauth/callback</string>
+        <key>scopes</key>
+        <string>openid profile email offline_access</string>
+        <key>client_id</key>
+        <string>&lt;HIER_CLIENT_ID_EINTRAGEN&gt;</string>
+        <key>client_secret</key>
+        <string>&lt;HIER_CLIENT_SECRET_EINTRAGEN&gt;</string>
+      </dict>
+    </dict>
+  </array>
+  <key>PayloadDisplayName</key>
+  <string>Argon Platform SSO (ARGON)</string>
+  <key>PayloadIdentifier</key>
+  <string>ch.argio.psso.ARGON</string>
+  <key>PayloadRemovalDisallowed</key>
+  <false/>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>4D8D116E-10C7-43E2-BE98-ARGON0000000</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+</dict>
+</plist>

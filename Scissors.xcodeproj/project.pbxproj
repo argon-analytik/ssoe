@@ -23,6 +23,14 @@
                 E070DFD191EF6A39DE513F6F /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D38C1CC0B3138F3DAA64EAED /* AuthenticationViewController.xib */; };
                 B403AFA3DF01A1BDC27EE9BC /* Cookies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7632D5732BBF9CF100CA9DFD /* Cookies.swift */; };
                 F3B3A0A2B1332CBEB61496A2 /* AuthenticationViewController+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767C483A2BBFA53D00AFA32F /* AuthenticationViewController+Shared.swift */; };
+                1F0E2C207BEF43E6AA8C5E01 /* OIDCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1E7BEF43E6AA8C5E01 /* OIDCConfig.swift */; };
+                1F0E2C217BEF43E6AA8C5E01 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1F7BEF43E6AA8C5E01 /* TokenStore.swift */; };
+                1F0E2C227BEF43E6AA8C5E01 /* OIDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1D7BEF43E6AA8C5E01 /* OIDC.swift */; };
+                1F0E2C237BEF43E6AA8C5E01 /* OIDCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1E7BEF43E6AA8C5E01 /* OIDCConfig.swift */; };
+                1F0E2C247BEF43E6AA8C5E01 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1F7BEF43E6AA8C5E01 /* TokenStore.swift */; };
+                1F0E2C257BEF43E6AA8C5E01 /* OIDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C1D7BEF43E6AA8C5E01 /* OIDC.swift */; };
+                1F0E2C0B7BEF43E6AA8C5E01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E2C0A7BEF43E6AA8C5E01 /* AppDelegate.swift */; };
+                1F0E2C0D7BEF43E6AA8C5E01 /* ssoe-macos.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +41,13 @@
 			remoteGlobalIDString = 7632D5502BBF236E00CA9DFD;
 			remoteInfo = "ssoe-ios";
 		};
+                1F0E2C107BEF43E6AA8C5E01 /* PBXContainerItemProxy */ = {
+                        isa = PBXContainerItemProxy;
+                        containerPortal = 768FA4B02BB7290F001DD2FB /* Project object */;
+                        proxyType = 1;
+                        remoteGlobalIDString = F90199734F7AF4B81CD19786;
+                        remoteInfo = "ssoe-macos";
+                };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +62,17 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+                1F0E2C0E7BEF43E6AA8C5E01 /* Embed App Extensions */ = {
+                        isa = PBXCopyFilesBuildPhase;
+                        buildActionMask = 2147483647;
+                        dstPath = "";
+                        dstSubfolderSpec = 13;
+                        files = (
+                                1F0E2C0D7BEF43E6AA8C5E01 /* ssoe-macos.appex in Embed App Extensions */,
+                        );
+                        name = "Embed App Extensions";
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -68,11 +94,18 @@
                 76E195232BD0BAD0002442A5 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
                 76E195292BD0BD49002442A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthenticationViewController.xib; sourceTree = "<group>"; };
                 626E9643F88C4B031E72B19A /* AuthorizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
+                1F0E2C1E7BEF43E6AA8C5E01 /* OIDCConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OIDCConfig.swift; sourceTree = "<group>"; };
+                1F0E2C1F7BEF43E6AA8C5E01 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+                1F0E2C1D7BEF43E6AA8C5E01 /* OIDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OIDC.swift; sourceTree = "<group>"; };
                 4C4B734FE3FF7962C6E6436B /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
                 61E96AA9CB240C4380895E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
                 14C7DE87D10CE0C443CD3928 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthenticationViewController.xib; sourceTree = "<group>"; };
                 45930309ADA03946BAABA00B /* ssoe-macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ssoe-macos.entitlements"; sourceTree = "<group>"; };
                 E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ssoe-macos.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+                1F0E2C0A7BEF43E6AA8C5E01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+                1F0E2C0C7BEF43E6AA8C5E01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+                1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Argon Platform SSO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+                1F0E2C127BEF43E6AA8C5E01 /* psso-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "psso-app.entitlements"; path = "entitlements/psso-app.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +178,9 @@
                                 767C483A2BBFA53D00AFA32F /* AuthenticationViewController+Shared.swift */,
                                 7632D5732BBF9CF100CA9DFD /* Cookies.swift */,
                                 626E9643F88C4B031E72B19A /* AuthorizationProvider.swift */,
+                                1F0E2C1E7BEF43E6AA8C5E01 /* OIDCConfig.swift */,
+                                1F0E2C1F7BEF43E6AA8C5E01 /* TokenStore.swift */,
+                                1F0E2C1D7BEF43E6AA8C5E01 /* OIDC.swift */,
                         );
                         path = Shared;
                         sourceTree = "<group>";
@@ -153,20 +189,22 @@
 			isa = PBXGroup;
 			children = (
 				767C483D2BBFB26300AFA32F /* Shared */,
-                                7632D53A2BBF233900CA9DFD /* Scissors-ios */,
-                                7632D5532BBF236E00CA9DFD /* ssoe-ios */,
-                                09633E6E5F12E269810CCFB4 /* ssoe-macos */,
-                                768FA4CF2BB7294D001DD2FB /* Frameworks */,
-                                768FA4B92BB7290F001DD2FB /* Products */,
+                               7632D53A2BBF233900CA9DFD /* Scissors-ios */,
+                               7632D5532BBF236E00CA9DFD /* ssoe-ios */,
+                               09633E6E5F12E269810CCFB4 /* ssoe-macos */,
+                                1F0E2C097BEF43E6AA8C5E01 /* psso-macos */,
+                               768FA4CF2BB7294D001DD2FB /* Frameworks */,
+                               768FA4B92BB7290F001DD2FB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		768FA4B92BB7290F001DD2FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-                                7632D5392BBF233900CA9DFD /* Scissors-ios.app */,
-                                7632D5512BBF236E00CA9DFD /* ssoe-ios.appex */,
-                                E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */,
+                               7632D5392BBF233900CA9DFD /* Scissors-ios.app */,
+                               7632D5512BBF236E00CA9DFD /* ssoe-ios.appex */,
+                               E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */,
+                                1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */,
                         );
                         name = Products;
 			sourceTree = "<group>";
@@ -235,6 +273,25 @@
                         productReference = E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */;
                         productType = "com.apple.product-type.app-extension";
                 };
+                1F0E2C117BEF43E6AA8C5E01 /* Argon Platform SSO */ = {
+                        isa = PBXNativeTarget;
+                        buildConfigurationList = 1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argon Platform SSO" */;
+                        buildPhases = (
+                                1F0E2C0F7BEF43E6AA8C5E01 /* Sources */,
+                                1F0E2C157BEF43E6AA8C5E01 /* Frameworks */,
+                                1F0E2C167BEF43E6AA8C5E01 /* Resources */,
+                                1F0E2C0E7BEF43E6AA8C5E01 /* Embed App Extensions */,
+                        );
+                        buildRules = (
+                        );
+                        dependencies = (
+                                1F0E2C137BEF43E6AA8C5E01 /* PBXTargetDependency */,
+                        );
+                        name = "Argon Platform SSO";
+                        productName = "Argon Platform SSO";
+                        productReference = 1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */;
+                        productType = "com.apple.product-type.application";
+                };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -265,11 +322,12 @@
 			productRefGroup = 768FA4B92BB7290F001DD2FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-                        targets = (
-                                7632D5382BBF233900CA9DFD /* Scissors-ios */,
-                                7632D5502BBF236E00CA9DFD /* ssoe-ios */,
-                                F90199734F7AF4B81CD19786 /* ssoe-macos */,
-                        );
+				targets = (
+				7632D5382BBF233900CA9DFD /* Scissors-ios */,
+				7632D5502BBF236E00CA9DFD /* ssoe-ios */,
+				F90199734F7AF4B81CD19786 /* ssoe-macos */,
+                                1F0E2C117BEF43E6AA8C5E01 /* Argon Platform SSO */,
+			);
                 };
 /* End PBXProject section */
 
@@ -300,6 +358,13 @@
                         );
                         runOnlyForDeploymentPostprocessing = 0;
                 };
+                1F0E2C167BEF43E6AA8C5E01 /* Resources */ = {
+                        isa = PBXResourcesBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -320,6 +385,9 @@
                                 7632D5752BBF9CF100CA9DFD /* Cookies.swift in Sources */,
                                 76E195252BD0BAD0002442A5 /* AuthenticationViewController.swift in Sources */,
                                 767C483C2BBFA53D00AFA32F /* AuthenticationViewController+Shared.swift in Sources */,
+                                1F0E2C207BEF43E6AA8C5E01 /* OIDCConfig.swift in Sources */,
+                                1F0E2C217BEF43E6AA8C5E01 /* TokenStore.swift in Sources */,
+                                1F0E2C227BEF43E6AA8C5E01 /* OIDC.swift in Sources */,
                         );
                         runOnlyForDeploymentPostprocessing = 0;
                 };
@@ -330,6 +398,24 @@
                                 B403AFA3DF01A1BDC27EE9BC /* Cookies.swift in Sources */,
                                 482A41A34683C3B669DFBE9C /* AuthenticationViewController.swift in Sources */,
                                 F3B3A0A2B1332CBEB61496A2 /* AuthenticationViewController+Shared.swift in Sources */,
+                                1F0E2C237BEF43E6AA8C5E01 /* OIDCConfig.swift in Sources */,
+                                1F0E2C247BEF43E6AA8C5E01 /* TokenStore.swift in Sources */,
+                                1F0E2C257BEF43E6AA8C5E01 /* OIDC.swift in Sources */,
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
+                1F0E2C0F7BEF43E6AA8C5E01 /* Sources */ = {
+                        isa = PBXSourcesBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
+                                1F0E2C0B7BEF43E6AA8C5E01 /* AppDelegate.swift in Sources */,
+                        );
+                        runOnlyForDeploymentPostprocessing = 0;
+                };
+                1F0E2C157BEF43E6AA8C5E01 /* Frameworks */ = {
+                        isa = PBXFrameworksBuildPhase;
+                        buildActionMask = 2147483647;
+                        files = (
                         );
                         runOnlyForDeploymentPostprocessing = 0;
                 };
@@ -341,6 +427,11 @@
 			target = 7632D5502BBF236E00CA9DFD /* ssoe-ios */;
 			targetProxy = 7632D55A2BBF236E00CA9DFD /* PBXContainerItemProxy */;
 		};
+                1F0E2C137BEF43E6AA8C5E01 /* PBXTargetDependency */ = {
+                        isa = PBXTargetDependency;
+                        target = F90199734F7AF4B81CD19786 /* ssoe-macos */;
+                        targetProxy = 1F0E2C107BEF43E6AA8C5E01 /* PBXContainerItemProxy */;
+                };
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -507,22 +598,23 @@
                         isa = XCBuildConfiguration;
                        buildSettings = {
                                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                               CODE_SIGN_STYLE = Automatic;
+                               CODE_SIGN_STYLE = Manual;
+                               CODE_SIGN_IDENTITY = "Developer ID Application: Yannick Meyer-Wildhagen (QUR8QTGXNB)";
                                 CURRENT_PROJECT_VERSION = 1;
                                 DEVELOPMENT_TEAM = QUR8QTGXNB;
                                 GENERATE_INFOPLIST_FILE = YES;
                                 INFOPLIST_FILE = "ssoe-macos/Info.plist";
                                 INFOPLIST_KEY_CFBundleDisplayName = "Argio SSO";
                                 INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                               MACOSX_DEPLOYMENT_TARGET = 14.4;
-                               CODE_SIGN_ENTITLEMENTS = "ssoe-macos/ssoe-macos.entitlements";
+                               MACOSX_DEPLOYMENT_TARGET = 13.0;
+                               CODE_SIGN_ENTITLEMENTS = "entitlements/psso-ext.entitlements";
                                LD_RUNPATH_SEARCH_PATHS = (
                                         "$(inherited)",
                                         "@executable_path/../Frameworks",
                                         "@executable_path/../../Frameworks",
                                 );
                                 MARKETING_VERSION = 1.0;
-                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension-macos";
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso.ssoe";
                                 PRODUCT_NAME = "$(TARGET_NAME)";
                                 SDKROOT = macosx;
                                 SKIP_INSTALL = YES;
@@ -536,28 +628,77 @@
                         isa = XCBuildConfiguration;
                        buildSettings = {
                                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                               CODE_SIGN_STYLE = Automatic;
+                               CODE_SIGN_STYLE = Manual;
+                                CODE_SIGN_IDENTITY = "Developer ID Application: Yannick Meyer-Wildhagen (QUR8QTGXNB)";
                                 CURRENT_PROJECT_VERSION = 1;
                                 DEVELOPMENT_TEAM = QUR8QTGXNB;
                                 GENERATE_INFOPLIST_FILE = YES;
                                 INFOPLIST_FILE = "ssoe-macos/Info.plist";
                                 INFOPLIST_KEY_CFBundleDisplayName = "Argio SSO";
                                 INFOPLIST_KEY_NSHumanReadableCopyright = "";
-                               MACOSX_DEPLOYMENT_TARGET = 14.4;
-                               CODE_SIGN_ENTITLEMENTS = "ssoe-macos/ssoe-macos.entitlements";
+                               MACOSX_DEPLOYMENT_TARGET = 13.0;
+                               CODE_SIGN_ENTITLEMENTS = "entitlements/psso-ext.entitlements";
                                LD_RUNPATH_SEARCH_PATHS = (
                                         "$(inherited)",
                                         "@executable_path/../Frameworks",
                                         "@executable_path/../../Frameworks",
                                 );
                                 MARKETING_VERSION = 1.0;
-                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.sso.extension-macos";
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso.ssoe";
                                 PRODUCT_NAME = "$(TARGET_NAME)";
                                 SDKROOT = macosx;
                                 SKIP_INSTALL = YES;
                                 SWIFT_EMIT_LOC_STRINGS = YES;
                                 SWIFT_VERSION = 5.0;
                                 VALIDATE_PRODUCT = YES;
+                        };
+                        name = Release;
+                };
+                1F0E2C197BEF43E6AA8C5E01 /* Debug */ = {
+                        isa = XCBuildConfiguration;
+                        buildSettings = {
+                                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                                CODE_SIGN_STYLE = Manual;
+                                CODE_SIGN_IDENTITY = "Developer ID Application: Yannick Meyer-Wildhagen (QUR8QTGXNB)";
+                                CURRENT_PROJECT_VERSION = 1;
+                                DEVELOPMENT_TEAM = QUR8QTGXNB;
+                                ENABLE_HARDENED_RUNTIME = YES;
+                                INFOPLIST_FILE = "psso-macos/Info.plist";
+                                LD_RUNPATH_SEARCH_PATHS = (
+                                        "$(inherited)",
+                                        "@executable_path/../Frameworks",
+                                );
+                                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                                MARKETING_VERSION = 1.0;
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso";
+                                PRODUCT_NAME = "Argon Platform SSO";
+                                SDKROOT = macosx;
+                                SWIFT_VERSION = 5.0;
+                                CODE_SIGN_ENTITLEMENTS = "entitlements/psso-app.entitlements";
+                        };
+                        name = Debug;
+                };
+                1F0E2C1A7BEF43E6AA8C5E01 /* Release */ = {
+                        isa = XCBuildConfiguration;
+                        buildSettings = {
+                                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+                                CODE_SIGN_STYLE = Manual;
+                                CODE_SIGN_IDENTITY = "Developer ID Application: Yannick Meyer-Wildhagen (QUR8QTGXNB)";
+                                CURRENT_PROJECT_VERSION = 1;
+                                DEVELOPMENT_TEAM = QUR8QTGXNB;
+                                ENABLE_HARDENED_RUNTIME = YES;
+                                INFOPLIST_FILE = "psso-macos/Info.plist";
+                                LD_RUNPATH_SEARCH_PATHS = (
+                                        "$(inherited)",
+                                        "@executable_path/../Frameworks",
+                                );
+                                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                                MARKETING_VERSION = 1.0;
+                                PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso";
+                                PRODUCT_NAME = "Argon Platform SSO";
+                                SDKROOT = macosx;
+                                SWIFT_VERSION = 5.0;
+                                CODE_SIGN_ENTITLEMENTS = "entitlements/psso-app.entitlements";
                         };
                         name = Release;
                 };
@@ -709,6 +850,15 @@
                         defaultConfigurationIsVisible = 0;
                         defaultConfigurationName = Release;
                 };
+                1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argon Platform SSO" */ = {
+                        isa = XCConfigurationList;
+                        buildConfigurations = (
+                                1F0E2C197BEF43E6AA8C5E01 /* Debug */,
+                                1F0E2C1A7BEF43E6AA8C5E01 /* Release */,
+                        );
+                        defaultConfigurationIsVisible = 0;
+                        defaultConfigurationName = Release;
+                };
                 768FA4B32BB7290F001DD2FB /* Build configuration list for PBXProject "Scissors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -722,3 +872,13 @@
 	};
 	rootObject = 768FA4B02BB7290F001DD2FB /* Project object */;
 }
+                1F0E2C097BEF43E6AA8C5E01 /* psso-macos */ = {
+                        isa = PBXGroup;
+                        children = (
+                                1F0E2C0A7BEF43E6AA8C5E01 /* AppDelegate.swift */,
+                                1F0E2C0C7BEF43E6AA8C5E01 /* Info.plist */,
+                                1F0E2C127BEF43E6AA8C5E01 /* psso-app.entitlements */,
+                        );
+                        path = "psso-macos";
+                        sourceTree = "<group>";
+                };
