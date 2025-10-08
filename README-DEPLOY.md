@@ -1,4 +1,4 @@
-Argon Platform SSO – Deployment
+Argio Platform SSO – Deployment
 
 - Build and sign a notarized pkg and two .mobileconfig profiles.
 - Prerequisites: Developer ID Application and Installer certificates, Xcode 15+, notary access.
@@ -8,7 +8,7 @@ Steps
 - Export env vars: `export APPLE_ID="yannick@meyer-wildhagen.com" APP_SPECIFIC_PWD="ruhw-hptc-ulgd-ldfp"`
 - Run: `scripts/build_release.sh`
 - Artifacts appear in `dist/`:
-  - `dist/Argon Platform SSO.pkg`
+  - `dist/Argio Platform SSO.pkg`
   - `dist/psso-ARGON.mobileconfig`
   - `dist/psso-MORA.mobileconfig`
   - `dist/README-DEPLOY.md`
@@ -28,4 +28,3 @@ Notes
 - Bundle IDs: app `ch.argio.psso`, extension `ch.argio.psso.ssoe`.
 - Team ID: `QUR8QTGXNB`. Signing is set to Manual for Release.
 - macOS deployment target: 13.0.
-

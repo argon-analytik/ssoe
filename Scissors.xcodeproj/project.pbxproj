@@ -104,7 +104,7 @@
                 E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ssoe-macos.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
                 1F0E2C0A7BEF43E6AA8C5E01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
                 1F0E2C0C7BEF43E6AA8C5E01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-                1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Argon Platform SSO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+                1F0E2C147BEF43E6AA8C5E01 /* Argio Platform SSO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Argio Platform SSO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
                 1F0E2C127BEF43E6AA8C5E01 /* psso-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "psso-app.entitlements"; path = "entitlements/psso-app.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +204,7 @@
                                7632D5392BBF233900CA9DFD /* Scissors-ios.app */,
                                7632D5512BBF236E00CA9DFD /* ssoe-ios.appex */,
                                E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */,
-                                1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */,
+                                1F0E2C147BEF43E6AA8C5E01 /* Argio Platform SSO.app */,
                         );
                         name = Products;
 			sourceTree = "<group>";
@@ -273,9 +273,9 @@
                         productReference = E8E49632B8DA8A90822D7FB1 /* ssoe-macos.appex */;
                         productType = "com.apple.product-type.app-extension";
                 };
-                1F0E2C117BEF43E6AA8C5E01 /* Argon Platform SSO */ = {
+                1F0E2C117BEF43E6AA8C5E01 /* Argio Platform SSO */ = {
                         isa = PBXNativeTarget;
-                        buildConfigurationList = 1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argon Platform SSO" */;
+                        buildConfigurationList = 1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argio Platform SSO" */;
                         buildPhases = (
                                 1F0E2C0F7BEF43E6AA8C5E01 /* Sources */,
                                 1F0E2C157BEF43E6AA8C5E01 /* Frameworks */,
@@ -287,9 +287,9 @@
                         dependencies = (
                                 1F0E2C137BEF43E6AA8C5E01 /* PBXTargetDependency */,
                         );
-                        name = "Argon Platform SSO";
-                        productName = "Argon Platform SSO";
-                        productReference = 1F0E2C147BEF43E6AA8C5E01 /* Argon Platform SSO.app */;
+                        name = "Argio Platform SSO";
+                        productName = "Argio Platform SSO";
+                        productReference = 1F0E2C147BEF43E6AA8C5E01 /* Argio Platform SSO.app */;
                         productType = "com.apple.product-type.application";
                 };
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 				7632D5382BBF233900CA9DFD /* Scissors-ios */,
 				7632D5502BBF236E00CA9DFD /* ssoe-ios */,
 				F90199734F7AF4B81CD19786 /* ssoe-macos */,
-                                1F0E2C117BEF43E6AA8C5E01 /* Argon Platform SSO */,
+                                1F0E2C117BEF43E6AA8C5E01 /* Argio Platform SSO */,
 			);
                 };
 /* End PBXProject section */
@@ -671,7 +671,7 @@
                                 MACOSX_DEPLOYMENT_TARGET = 13.0;
                                 MARKETING_VERSION = 1.0;
                                 PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso";
-                                PRODUCT_NAME = "Argon Platform SSO";
+                                PRODUCT_NAME = "Argio Platform SSO";
                                 SDKROOT = macosx;
                                 SWIFT_VERSION = 5.0;
                                 CODE_SIGN_ENTITLEMENTS = "entitlements/psso-app.entitlements";
@@ -695,7 +695,7 @@
                                 MACOSX_DEPLOYMENT_TARGET = 13.0;
                                 MARKETING_VERSION = 1.0;
                                 PRODUCT_BUNDLE_IDENTIFIER = "ch.argio.psso";
-                                PRODUCT_NAME = "Argon Platform SSO";
+                                PRODUCT_NAME = "Argio Platform SSO";
                                 SDKROOT = macosx;
                                 SWIFT_VERSION = 5.0;
                                 CODE_SIGN_ENTITLEMENTS = "entitlements/psso-app.entitlements";
@@ -850,7 +850,7 @@
                         defaultConfigurationIsVisible = 0;
                         defaultConfigurationName = Release;
                 };
-                1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argon Platform SSO" */ = {
+                1F0E2C1B7BEF43E6AA8C5E01 /* Build configuration list for PBXNativeTarget "Argio Platform SSO" */ = {
                         isa = XCConfigurationList;
                         buildConfigurations = (
                                 1F0E2C197BEF43E6AA8C5E01 /* Debug */,

@@ -14,7 +14,7 @@
       <key>PayloadUUID</key>
       <string>6A8A68D4-3C75-4A8C-A6C6-MORA0000001</string>
       <key>PayloadDisplayName</key>
-      <string>Argon Platform SSO</string>
+      <string>Argio Platform SSO</string>
       <key>TeamIdentifier</key>
       <string>QUR8QTGXNB</string>
       <key>Type</key>
@@ -45,7 +45,7 @@
     </dict>
   </array>
   <key>PayloadDisplayName</key>
-  <string>Argon Platform SSO (MORA)</string>
+  <string>Argio Platform SSO (MORA)</string>
   <key>PayloadIdentifier</key>
   <string>ch.argio.psso.MORA</string>
   <key>PayloadRemovalDisallowed</key>

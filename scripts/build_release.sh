@@ -6,8 +6,8 @@ TEAM_ID="QUR8QTGXNB"
 ORG_REVERSE_DOMAIN="ch.argio"
 BUNDLE_APP="ch.argio.psso"
 BUNDLE_EXT="ch.argio.psso.ssoe"
-APP_NAME="Argon Platform SSO"
-EXT_NAME="Argon Platform SSO Extension"
+APP_NAME="Argio Platform SSO"
+EXT_NAME="Argio Platform SSO Extension"
 ISSUER="https://auth.argio.ch"
 AUTHZ="${ISSUER}/application/o/authorize/"
 TOKEN="${ISSUER}/application/o/token/"
@@ -21,10 +21,10 @@ set -x
 
 ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 PROJ="${ROOT_DIR}/Scissors.xcodeproj"
-SCHEME="Argon Platform SSO"
+SCHEME="Argio Platform SSO"
 BUILD_DIR="${ROOT_DIR}/build"
 EXPORT_DIR="${BUILD_DIR}/export"
-ARCHIVE_PATH="${BUILD_DIR}/ArgonPlatformSSO.xcarchive"
+ARCHIVE_PATH="${BUILD_DIR}/ArgioPlatformSSO.xcarchive"
 PKG_PATH="${BUILD_DIR}/${APP_NAME}.pkg"
 DIST_DIR="${ROOT_DIR}/dist"
 
@@ -54,7 +54,7 @@ validate_project() {
   /usr/libexec/PlistBuddy -c "Set :objects:5177E3FE8DFC0FF72721FED7:buildSettings:PRODUCT_BUNDLE_IDENTIFIER $BUNDLE_EXT" "${PROJ}/project.pbxproj" 2>/dev/null || true
   /usr/libexec/PlistBuddy -c "Set :objects:A0D123313BDEB9B6592B1B9E:buildSettings:PRODUCT_BUNDLE_IDENTIFIER $BUNDLE_EXT" "${PROJ}/project.pbxproj" 2>/dev/null || true
 
-  # Argon Platform SSO app
+  # Argio Platform SSO app
   /usr/libexec/PlistBuddy -c "Set :objects:1F0E2C197BEF43E6AA8C5E01:buildSettings:PRODUCT_BUNDLE_IDENTIFIER $BUNDLE_APP" "${PROJ}/project.pbxproj" 2>/dev/null || true
   /usr/libexec/PlistBuddy -c "Set :objects:1F0E2C1A7BEF43E6AA8C5E01:buildSettings:PRODUCT_BUNDLE_IDENTIFIER $BUNDLE_APP" "${PROJ}/project.pbxproj" 2>/dev/null || true
 }
@@ -125,4 +125,3 @@ main() {
 }
 
 main "$@"
-

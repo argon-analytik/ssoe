@@ -1,7 +1,7 @@
-# Argon Platform SSO (Apple Extensible/Platform SSO)
+# Argio Platform SSO (Apple Extensible/Platform SSO)
 
 Universal (macOS + iOS) Authentication Services extension that implements Apple’s
-Extensible SSO / Platform SSO for the Argon platform (OIDC). The repository
+Extensible SSO / Platform SSO for the Argio platform (OIDC). The repository
 contains a macOS host app, iOS and macOS SSO extensions, and shared code for a
 Redirect‑based OIDC flow with PKCE, Keychain token storage, and MDM‑driven config.
 
@@ -31,8 +31,8 @@ generated artifacts (.pkg and .mobileconfig), and deployment with Mosyle.
   - Container (macOS host app): `ch.argio.psso`
   - Extension (macOS/iOS): `ch.argio.psso.ssoe`
 - Names
-  - APP_NAME: `Argon Platform SSO`
-  - EXT_NAME: `Argon Platform SSO Extension`
+  - APP_NAME: `Argio Platform SSO`
+  - EXT_NAME: `Argio Platform SSO Extension`
 - OIDC Defaults
   - ISSUER: `https://auth.argio.ch`
   - AUTHZ: `${ISSUER}/application/o/authorize/`
@@ -52,7 +52,7 @@ Secrets are read from the environment for notarization:
 .
 ├── Scissors.xcodeproj/              # Xcode project (iOS app, iOS+macOS extensions, macOS host app)
 │   └── xcshareddata/xcschemes/
-│       └── Argon Platform SSO.xcscheme
+│       └── Argio Platform SSO.xcscheme
 ├── Scissors-ios/                    # iOS sample container app (for local testing)
 ├── ssoe-ios/                        # iOS SSO extension (idp-extension)
 ├── ssoe-macos/                      # macOS SSO extension (idp-extension)
@@ -81,7 +81,7 @@ Secrets are read from the environment for notarization:
 ## Targets and Bundle IDs
 
 - macOS Host App
-  - Target: `Argon Platform SSO`
+  - Target: `Argio Platform SSO`
   - Bundle ID: `ch.argio.psso`
   - Deployment target: macOS 13+
   - Entitlements: `entitlements/psso-app.entitlements` (Associated Domains)
@@ -202,7 +202,7 @@ What the script does:
 - Verifies required tools: `xcodebuild`, `plutil`, `PlistBuddy`, `codesign`, `productbuild`, `stapler`, `xcrun`
 - Stores notary credentials idempotently:
   - `xcrun notarytool store-credentials AC_NOTARY --apple-id "$APPLE_ID" --team-id "QUR8QTGXNB" --password "$APP_SPECIFIC_PWD"`
-- Archives the `Argon Platform SSO` scheme (Release)
+- Archives the `Argio Platform SSO` scheme (Release)
 - Exports the `.app` with Developer ID signing
 - Verifies codesign of the exported `.app`
 - Builds a signed Installer `.pkg` (Developer ID Installer)
@@ -212,8 +212,8 @@ What the script does:
 Manual reference (equivalent commands):
 
 ```bash
-xcodebuild -project Scissors.xcodeproj -configuration Release -scheme "Argon Platform SSO" clean build
-xcodebuild -project Scissors.xcodeproj -scheme "Argon Platform SSO" -configuration Release -archivePath build/ArgonPlatformSSO.xcarchive archive
+xcodebuild -project Scissors.xcodeproj -configuration Release -scheme "Argio Platform SSO" clean build
+xcodebuild -project Scissors.xcodeproj -scheme "Argio Platform SSO" -configuration Release -archivePath build/ArgioPlatformSSO.xcarchive archive
 
 cat > ExportOptions.plist <<EOF
 {
@@ -223,15 +223,15 @@ cat > ExportOptions.plist <<EOF
 }
 EOF
 
-xcodebuild -exportArchive -archivePath build/ArgonPlatformSSO.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/export
+xcodebuild -exportArchive -archivePath build/ArgioPlatformSSO.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/export
 
-codesign --verify --deep --strict --verbose=2 "build/export/Argon Platform SSO.app"
+codesign --verify --deep --strict --verbose=2 "build/export/Argio Platform SSO.app"
 
-productbuild --component "build/export/Argon Platform SSO.app" /Applications "build/Argon Platform SSO.pkg" \
+productbuild --component "build/export/Argio Platform SSO.app" /Applications "build/Argio Platform SSO.pkg" \
   --sign "Developer ID Installer: Yannick Meyer-Wildhagen (QUR8QTGXNB)"
 
-xcrun notarytool submit "build/Argon Platform SSO.pkg" --keychain-profile AC_NOTARY --wait
-xcrun stapler staple "build/Argon Platform SSO.pkg"
+xcrun notarytool submit "build/Argio Platform SSO.pkg" --keychain-profile AC_NOTARY --wait
+xcrun stapler staple "build/Argio Platform SSO.pkg"
 ```
 
 ---
@@ -240,7 +240,7 @@ xcrun stapler staple "build/Argon Platform SSO.pkg"
 
 After running the build script, artifacts are placed in `dist/`:
 
-- `dist/Argon Platform SSO.pkg`
+- `dist/Argio Platform SSO.pkg`
 - `dist/psso-ARGON.mobileconfig`
 - `dist/psso-MORA.mobileconfig`
 - `dist/README-DEPLOY.md`
@@ -250,7 +250,7 @@ After running the build script, artifacts are placed in `dist/`:
 ## Development and Testing
 
 - Open `Scissors.xcodeproj` in Xcode.
-- For macOS packaging, use scheme: `Argon Platform SSO`.
+- For macOS packaging, use scheme: `Argio Platform SSO`.
 - For iOS Safari/App SSO testing, use scheme: `ssoe-ios` and install on a device.
 - Logging: the extension uses lightweight `print` logging; integrate `os_log` as needed.
 
@@ -283,4 +283,3 @@ After running the build script, artifacts are placed in `dist/`:
 
 MIT. Contributions welcome — please keep changes focused and ensure Release
 archive builds are clean before submitting PRs.
-

@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>Argon Platform SSO</string>
+    <string>Argio Platform SSO</string>
     <key>CFBundleIdentifier</key>
     <string>ch.argio.psso</string>
     <key>CFBundleDisplayName</key>
-    <string>Argon Platform SSO</string>
+    <string>Argio Platform SSO</string>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>CFBundleShortVersionString</key>
@@ -22,4 +22,3 @@
     <true/>
 </dict>
 </plist>
-

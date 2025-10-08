@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1F0E2C117BEF43E6AA8C5E01"
-               BuildableName = "Argon Platform SSO.app"
-               BlueprintName = "Argon Platform SSO"
+               BuildableName = "Argio Platform SSO.app"
+               BlueprintName = "Argio Platform SSO"
                ReferencedContainer = "container:Scissors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1F0E2C117BEF43E6AA8C5E01"
-            BuildableName = "Argon Platform SSO.app"
-            BlueprintName = "Argon Platform SSO"
+            BuildableName = "Argio Platform SSO.app"
+            BlueprintName = "Argio Platform SSO"
             ReferencedContainer = "container:Scissors.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1F0E2C117BEF43E6AA8C5E01"
-            BuildableName = "Argon Platform SSO.app"
-            BlueprintName = "Argon Platform SSO"
+            BuildableName = "Argio Platform SSO.app"
+            BlueprintName = "Argio Platform SSO"
             ReferencedContainer = "container:Scissors.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,4 +76,3 @@
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
-
